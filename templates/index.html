@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GuidelineLens AI | Brand Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+ --navy:#140B34;--purple:#6D28D9;--purple2:#9333EA;
+ --bg:#F7F8FC;--border:#E5E7EF;--text:#172033;
+ --muted:#718096;--green:#059669;--red:#DC2626;--amber:#D97706;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea,select{font:inherit}
+header{background:var(--navy);color:white;padding:14px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;position:sticky;top:0;z-index:10;border-bottom:1px solid #6D28D955}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#6D28D9,#A855F7);display:grid;place-items:center;font-size:18px}
+.brand h1{font-size:20px;font-weight:800;letter-spacing:-.5px}
+.brand h1 span{color:#C084FC}
+.brand small{display:block;color:#B8B1CE;font-size:10px;margin-top:3px}
+nav{display:flex;gap:5px;background:#FFFFFF12;padding:4px;border-radius:9px;flex-wrap:wrap}
+.nav{border:0;background:transparent;color:#D3CDE2;padding:10px 12px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer}
+.nav.active{background:var(--purple);color:white}
+.engine{font-size:10px;color:#E9D5FF;border:1px solid #A855F766;background:#A855F722;padding:8px 10px;border-radius:7px}
+main{max-width:1550px;margin:auto;padding:26px}
+.view{display:none}.view.active{display:block}
+.workspace{display:grid;grid-template-columns:1fr 1.08fr;gap:20px;align-items:start}
+.panel{background:white;border:1px solid var(--border);border-radius:12px;padding:21px;min-width:0;box-shadow:0 2px 5px #17203306;margin-bottom:18px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #EEF0F5;padding-bottom:13px;margin-bottom:16px}
+.panel-head h2{font-size:14px;font-weight:800}
+.panel-head i{color:var(--purple);margin-right:7px}
+.small-purple{font-size:10px;color:var(--purple);font-weight:800}
+label{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:7px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:15px}
+input,select,textarea{width:100%;border:1px solid #CBD5E1;border-radius:7px;padding:11px;font-size:12px;outline:none;background:white;color:var(--text)}
+input:focus,select:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px #6D28D918}
+textarea{min-height:175px;resize:vertical;line-height:1.7}
+.presets{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:17px}
+.presets span{font-size:10px;color:var(--muted);font-weight:700}
+.preset{border:1px solid #DDD6FE;background:#F5F3FF;color:#5B21B6;padding:6px 9px;border-radius:20px;font-size:10px;font-weight:700;cursor:pointer}
+.btn{border:1px solid var(--border);background:white;border-radius:7px;padding:9px 12px;font-size:11px;font-weight:750;cursor:pointer}
+.btn-primary{background:var(--purple);border-color:var(--purple);color:white}
+.btn-primary:hover{background:#5520B5}
+.btn:disabled{opacity:.6;cursor:wait}
+.full{width:100%;padding:13px}
+.note{font-size:10px;color:var(--muted);line-height:1.6;margin-top:9px}
+.notice{display:none;border-radius:7px;padding:10px 12px;font-size:11px;margin-bottom:13px}
+.notice.show{display:block}.notice.error{background:#FEE2E2;color:#991B1B}.notice.success{background:#D1FAE5;color:#065F46}
+.status-banner{background:var(--navy);color:white;border-radius:10px;padding:18px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.status-banner small{font-size:9px;color:#C4B5FD;font-weight:800;letter-spacing:1px}
+.status-banner h3{font-size:16px;margin-top:7px}
+.status-banner p{font-size:10px;color:#C4C1D2;margin-top:5px;line-height:1.6}
+.status-pill{font-size:10px;font-weight:800;background:#FEE2E2;color:#991B1B;border-radius:6px;padding:8px 10px;white-space:nowrap}
+.status-pill.good{background:#D1FAE5;color:#065F46}
+.issue{border:1px solid var(--border);border-left:4px solid var(--red);border-radius:8px;padding:14px;margin-bottom:11px}
+.issue.medium{border-left-color:var(--amber)}.issue.low{border-left-color:var(--green)}
+.issue-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:9px}
+.issue-title{font-size:11px;font-weight:800}
+.severity{font-size:9px;font-weight:800;text-transform:uppercase;padding:4px 7px;border-radius:5px;background:#FEE2E2;color:#991B1B}
+.severity.medium{background:#FEF3C7;color:#92400E}.severity.low{background:#D1FAE5;color:#065F46}
+.issue p{font-size:11px;color:#526078;line-height:1.65;margin:6px 0}
+.suggestion{background:#F5F3FF;border:1px solid #DDD6FE;padding:10px;border-radius:6px;color:#4C1D95;font-size:11px;line-height:1.6;margin-top:9px}
+.issue-actions{display:flex;gap:7px;margin-top:11px;align-items:center;flex-wrap:wrap}
+.issue-actions button{font-size:10px;padding:7px 10px}
+.decision{font-size:10px;font-weight:800;border-radius:5px;padding:6px 8px;background:#F1F5F9;color:#475569}
+.decision.approved{background:#D1FAE5;color:#065F46}.decision.rejected{background:#FEE2E2;color:#991B1B}
+.empty{text-align:center;padding:35px 15px;color:var(--muted);font-size:11px;line-height:1.8}
+.empty i{font-size:25px;color:#A78BFA;display:block;margin-bottom:12px}
+.view-heading{margin-bottom:20px}
+.view-heading h2{font-size:23px;letter-spacing:-.5px}
+.view-heading p{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.6}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start}
+.rule{border:1px solid var(--border);border-radius:8px;padding:13px;margin-bottom:9px}
+.rule-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.rule-name{font-size:11px;font-weight:800}
+.category{display:inline-block;background:#F3E8FF;color:#6B21A8;padding:4px 7px;border-radius:4px;font-size:9px;font-weight:800;margin-top:8px}
+.rule-desc{font-size:11px;color:var(--muted);line-height:1.6;margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:10px}
+th{text-align:left;background:#F8FAFC;color:var(--muted);font-size:9px;letter-spacing:.4px;text-transform:uppercase;padding:11px}
+td{padding:12px 11px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6}
+.table-wrap{overflow-x:auto}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:17px}
+.stat{background:white;border:1px solid var(--border);border-radius:9px;padding:16px}
+.stat small{font-size:10px;color:var(--muted)}.stat strong{font-size:25px;display:block;margin-top:6px}
+.intel{border:1px solid var(--border);border-radius:9px;padding:15px;margin-bottom:11px}
+.intel h3{font-size:12px;margin-bottom:7px}.intel p{font-size:11px;color:var(--muted);line-height:1.7}
+footer{text-align:center;background:white;border-top:1px solid var(--border);padding:16px;font-size:10px;color:var(--muted)}
+@media(max-width:1050px){header{justify-content:center}.workspace,.two{grid-template-columns:1fr}}
+@media(max-width:650px){header{padding:13px}.brand{width:100%;justify-content:center}.brand small{max-width:260px}.engine{display:none}nav{justify-content:center;width:100%}.nav{font-size:9px;padding:8px}main{padding:14px}.panel{padding:15px}.form-row{grid-template-columns:1fr}.stat-grid{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+<header>
+ <div class="brand">
+  <div class="brand-icon"><i class="fa-solid fa-shield-halved"></i></div>
+  <div>
+   <h1>GuidelineLens <span>AI</span></h1>
+   <small>Self-Improving Brand Governance & Guideline Intelligence Platform</small>
+  </div>
+ </div>
+ <nav>
+  <button class="nav active" data-tab="review">⌕ Content Review</button>
+  <button class="nav" data-tab="guidelines">▤ Brand Guidelines</button>
+  <button class="nav" data-tab="intelligence">✧ Guideline Intelligence</button>
+  <button class="nav" data-tab="history">◷ Audit History</button>
+ </nav>
+ <div class="engine"><i class="fa-solid fa-circle-check"></i> Built-in Smart Rules</div>
+</header>
+
+<main>
+
+<section class="view active" id="view-review">
+ <div class="workspace">
+  <div class="panel">
+   <div class="panel-head"><h2><i class="fa-solid fa-pen-to-square"></i> Submit Content for Pre-Publication Check</h2><span class="small-purple">CONTENT REVIEW</span></div>
+   <div class="presets">
+    <span>Quick Test Drafts:</span>
+    <button class="preset" onclick="loadPreset('ad')">1. Promotional Ad</button>
+    <button class="preset" onclick="loadPreset('launch')">2. Product Launch</button>
+    <button class="preset" onclick="loadPreset('good')">3. Compliant Post</button>
+   </div>
+   <div class="form-row">
+    <div class="field"><label>Content Channel</label><select id="channel"><option>Social Media Advertisement</option><option>Customer Email</option><option>Product Landing Page</option><option>Press Release</option><option>Website Content</option></select></div>
+    <div class="field"><label>Brand Profile</label><select id="brandProfile"><option>Default Brand Profile</option></select></div>
+   </div>
+   <div class="field"><label>Draft Content Copy</label><textarea id="draft" placeholder="Paste your marketing copy, advertisement or other content here..."></textarea></div>
+   <div class="notice" id="reviewNotice"></div>
+   <button class="btn btn-primary full" id="analyzeButton" onclick="analyzeContent()"><i class="fa-solid fa-wand-magic-sparkles"></i> Analyse Content Against Brand Guidelines</button>
+   <p class="note">The current prototype checks text against built-in patterns and saved brand guidelines. It does not independently verify external facts or images.</p>
+  </div>
+
+  <div class="panel">
+   <div class="panel-head"><h2><i class="fa-solid fa-clipboard-check"></i> Compliance Report & Findings</h2><span class="small-purple" id="reportStatus">READY</span></div>
+   <div id="results"><div class="empty"><i class="fa-solid fa-file-circle-check"></i><strong>Your review report will appear here.</strong><br>Enter content and select Analyse to begin.</div></div>
+  </div>
+ </div>
+</section>
+
+<section class="view" id="view-guidelines">
+ <div class="view-heading"><h2>Brand Guidelines Knowledge Base</h2><p>Manage approved terminology, tone requirements and content restrictions.</p></div>
+ <div class="two">
+  <div class="panel">
+   <div class="panel-head"><h2><i class="fa-solid fa-book-bookmark"></i> Saved Guidelines</h2><span class="small-purple" id="ruleCount">0 RULES</span></div>
+   <div id="guidelinesList"></div>
+  </div>
+  <div class="panel">
+   <div class="panel-head"><h2><i class="fa-solid fa-plus-circle"></i> Add New Guideline</h2></div>
+   <form id="guidelineForm">
+    <div class="field"><label>Rule Name</label><input id="ruleName" required placeholder="e.g. Approved terminology"></div>
+    <div class="field"><label>Category</label><select id="ruleCategory"><option>Tone of Voice</option><option>Terminology</option><option>Claims & Facts</option><option>Messaging</option><option>Other</option></select></div>
+    <div class="field"><label>Rule Description</label><textarea id="ruleDescription" required placeholder="Example: Do not use the term 'cheap'. Use 'affordable' instead." style="min-height:120px"></textarea></div>
+    <div class="notice" id="guidelineNotice"></div>
+    <button class="btn btn-primary full">Save Guideline</button>
+   </form>
+  </div>
+ </div>
+</section>
+
+<section class="view" id="view-intelligence">
+ <div class="view-heading"><h2>Guideline Intelligence</h2><p>Inspect saved rules for possible conflicts and unclear instructions.</p></div>
+ <div class="panel">
+  <div class="panel-head"><h2><i class="fa-solid fa-code-compare"></i> Guideline Consistency Inspection</h2><span class="small-purple">RULE INSPECTION</span></div>
+  <div id="intelligenceResults"></div>
+ </div>
+ <div class="panel">
+  <h2 style="font-size:13px;margin-bottom:8px">About this feature</h2>
+  <p class="note">This prototype uses simple text-pattern checks to identify possible tone conflicts. These are suggestions for human review, not proof of a contradiction. Automatic guideline rewriting is not implemented.</p>
+ </div>
+</section>
+
+<section class="view" id="view-history">
+ <div class="view-heading"><h2>Audit History</h2><p>Previously analysed content, findings and reviewer decisions.</p></div>
+ <div class="stat-grid">
+  <div class="stat"><small>Total Reviews</small><strong id="totalReviews">0</strong></div>
+  <div class="stat"><small>Saved Guidelines</small><strong id="totalRules">0</strong></div>
+  <div class="stat"><small>Recorded Decisions</small><strong id="totalDecisions">0</strong></div>
+ </div>
+ <div class="panel">
+  <div class="panel-head"><h2><i class="fa-solid fa-file-signature"></i> Review Activity Records</h2><span class="small-purple">DATABASE HISTORY</span></div>
+  <div id="historyTable" class="table-wrap"></div>
+ </div>
+</section>
+
+</main>
+<footer><strong>GuidelineLens AI</strong> · CodeNova India 2026 · Brand Governance & Guideline Intelligence</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+
+const presets={
+ ad:"Hey guys!! Grab our super cheap product today! We guarantee 100% instant perfection and zero effort for every business. Click now before this crazy deal disappears!",
+ launch:"We are excited to announce our product version 1.0. It is guaranteed to cure all diseases and works instantly.",
+ good:"Hello everyone, discover how our platform helps teams review content against approved brand guidelines with clear recommendations."
+};
+
+function esc(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+
+async function api(url,options={}){
+ const response=await fetch(url,{headers:{"Content-Type":"application/json"},...options});
+ const data=await response.json().catch(()=>({}));
+ if(!response.ok)throw new Error(data.error||"Request failed.");
+ return data;
+}
+
+function toast(message){alert(message)}
+
+function showNotice(id,message,type="success"){
+ const el=$(id);el.className="notice show "+type;el.textContent=message;
+}
+function clearNotice(id){$(id).className="notice";$(id).textContent=""}
+
+function switchTab(name){
+ document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="view-"+name));
+ document.querySelectorAll(".nav").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));
+ if(name==="guidelines")loadGuidelines();
+ if(name==="history")loadHistory();
+ if(name==="intelligence")loadIntelligence();
+}
+document.querySelectorAll(".nav").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
+
+function loadPreset(name){$("draft").value=presets[name]}
+
+async function loadGuidelines(){
+ try{
+  const data=await api("/api/guidelines");
+  const items=data.items||[];
+  $("ruleCount").textContent=items.length+" RULES";
+  $("totalRules").textContent=items.length;
+  if(!items.length){
+   $("guidelinesList").innerHTML='<div class="empty">No guidelines saved yet. Add your first rule.</div>';
+   return items;
+  }
+  $("guidelinesList").innerHTML=items.map(r=>`
+   <div class="rule">
+    <div class="rule-top"><span class="rule-name">${esc(r.rule_name)}</span><button class="btn" onclick="deleteGuideline(${Number(r.id)})">Delete</button></div>
+    <span class="category">${esc(r.category)}</span>
+    <div class="rule-desc">${esc(r.rule_description)}</div>
+   </div>`).join("");
+  return items;
+ }catch(e){$("guidelinesList").innerHTML='<div class="empty">'+esc(e.message)+'</div>';return []}
+}
+
+$("guidelineForm").addEventListener("submit",async event=>{
+ event.preventDefault();clearNotice("guidelineNotice");
+ try{
+  await api("/api/guidelines",{method:"POST",body:JSON.stringify({
+   name:$("ruleName").value.trim(),
+   category:$("ruleCategory").value,
+   description:$("ruleDescription").value.trim()
+  })});
+  $("guidelineForm").reset();
+  showNotice("guidelineNotice","Guideline saved successfully.");
+  await loadGuidelines();
+ }catch(e){showNotice("guidelineNotice",e.message,"error")}
+});
+
+async function deleteGuideline(id){
+ if(!confirm("Delete this guideline?"))return;
+ try{await api("/api/guidelines/"+id,{method:"DELETE"});await loadGuidelines()}
+ catch(e){toast(e.message)}
+}
+
+let currentReviewId=null;
+let currentFindings=[];
+
+async function analyzeContent(){
+ clearNotice("reviewNotice");
+ const content=$("draft").value.trim();
+ if(!content){showNotice("reviewNotice","Please enter content to analyse.","error");return}
+ const btn=$("analyzeButton");btn.disabled=true;btn.textContent="Analysing...";
+ $("reportStatus").textContent="ANALYSING";
+ try{
+  const data=await api("/api/analyze",{method:"POST",body:JSON.stringify({content})});
+  currentReviewId=data.review_id;
+  currentFindings=data.findings||[];
+  renderFindings();
+  $("reportStatus").textContent=currentFindings.length+" FINDINGS";
+  showNotice("reviewNotice","Analysis completed successfully.");
+ }catch(e){
+  $("reportStatus").textContent="ERROR";
+  showNotice("reviewNotice",e.message,"error");
+ }finally{
+  btn.disabled=false;
+  btn.innerHTML='<i class="fa-solid fa-wand-magic-sparkles"></i> Analyse Content Against Brand Guidelines';
+ }
+}
+
+function renderFindings(){
+ const findings=currentFindings;
+ const count=findings.length;
+ const high=findings.filter(f=>String(f.severity).toLowerCase()==="high").length;
+ const medium=findings.filter(f=>String(f.severity).toLowerCase()==="medium").length;
+ const low=findings.filter(f=>String(f.severity).toLowerCase()==="low").length;
+
+ let html=`
+ <div class="status-banner">
+  <div><small>RULE-CHECK STATUS</small>
+   <h3>${count?"Content Needs Human Review":"No Issues Detected"}</h3>
+   <p>${count} finding(s) · ${high} high · ${medium} medium · ${low} low<br>Findings are based on current built-in and saved rules.</p>
+  </div>
+  <span class="status-pill ${count?"":"good"}">${count?"Needs review":"No issues found"}</span>
+ </div>`;
+
+ if(!count){
+  html+='<div class="empty"><i class="fa-solid fa-circle-check"></i><strong>No issues detected by the current checks.</strong><br>This is not a guarantee of factual accuracy or full brand compliance.</div>';
+ }else{
+  html+=findings.map((f,i)=>{
+   const severity=["high","medium","low"].includes(String(f.severity).toLowerCase())?String(f.severity).toLowerCase():"medium";
+   return `<div class="issue ${severity}">
+    <div class="issue-head"><span class="issue-title">${esc(f.type)}</span><span class="severity ${severity}">${esc(severity)}</span></div>
+    <p><strong>Detected text:</strong> ${esc(f.phrase)}</p>
+    <p><strong>Explanation:</strong> ${esc(f.explanation)}</p>
+    <p><strong>Source rule:</strong> ${esc(f.rule_name||"Built-in rule")}</p>
+    <div class="suggestion"><strong>Suggested correction:</strong> ${esc(f.suggestion)}</div>
+    <div class="issue-actions">
+     <button class="btn" onclick="recordDecision(${i},'Approved')"><i class="fa-solid fa-check"></i> Approve</button>
+     <button class="btn" onclick="recordDecision(${i},'Rejected')"><i class="fa-solid fa-xmark"></i> Reject</button>
+     <span class="decision" id="decision-${i}">Pending</span>
+    </div>
+   </div>`;
+  }).join("");
+ }
+ $("results").innerHTML=html;
+}
+
+async function recordDecision(index,decision){
+ if(currentReviewId===null){toast("Analyse content first.");return}
+ try{
+  await api("/api/decisions",{method:"POST",body:JSON.stringify({
+   review_id:currentReviewId,finding_index:index,decision
+  })});
+  const el=$("decision-"+index);
+  el.textContent=decision;el.className="decision "+decision.toLowerCase();
+ }catch(e){toast(e.message)}
+}
+
+async function loadHistory(){
+ try{
+  const [history,stats]=await Promise.all([api("/api/history"),api("/api/stats")]);
+  const items=history.items||[];
+  $("totalReviews").textContent=stats.total_reviews??0;
+  $("totalRules").textContent=stats.total_guidelines??0;
+  $("totalDecisions").textContent=stats.total_decisions??0;
+
+  if(!items.length){
+   $("historyTable").innerHTML='<div class="empty">No review records yet.</div>';return;
+  }
+
+  $("historyTable").innerHTML=items.map(item=>{
+   const findings=item.findings||[];
+   const decisions=findings.map((f,i)=>{
+    const status=f.decision||"Pending";
+    const cls=status==="Approved"?"approved":status==="Rejected"?"rejected":"";
+    return `<div style="margin:5px 0"><strong>${esc(f.type)}</strong><br><span class="decision ${cls}">${esc(status)}</span>${f.decision_time?`<br><small>${esc(f.decision_time)}</small>`:""}</div>`;
+   }).join("");
+   return `<div class="rule">
+    <div class="rule-top"><span class="rule-name">Review #${Number(item.id)}</span><span class="small-purple">${findings.length} FINDINGS</span></div>
+    <div class="rule-desc"><strong>Content:</strong> ${esc((item.content||"").slice(0,180))}${(item.content||"").length>180?"...":""}</div>
+    <div class="rule-desc"><strong>Date:</strong> ${esc(item.created_at||"—")}</div>
+    <div class="rule-desc"><strong>Review status:</strong> ${esc(item.status||"Reviewed")}</div>
+    <div style="margin-top:12px;font-size:10px;font-weight:800">FINDING DECISIONS</div>
+    ${decisions||'<p class="note">No findings in this review.</p>'}
+   </div>`;
+  }).join("");
+ }catch(e){$("historyTable").innerHTML='<div class="empty">'+esc(e.message)+'</div>'}
+}
+
+async function loadIntelligence(){
+ try{
+  const data=await api("/api/guidelines");
+  const rules=data.items||[];
+  const friendly=rules.filter(r=>/friendly|conversational|casual|warm tone/i.test(r.rule_description));
+  const formal=rules.filter(r=>/strictly formal|formal tone|formal communication/i.test(r.rule_description));
+  let html="";
+  if(friendly.length&&formal.length){
+   html+=`<div class="intel"><h3>⚠ Possible Tone Guideline Conflict</h3><p>Some rules request a friendly or conversational tone, while others request strictly formal communication. This may require channel-specific clarification.</p><p class="note">Friendly rules: ${friendly.map(r=>esc(r.rule_name)).join(", ")}</p><p class="note">Formal rules: ${formal.map(r=>esc(r.rule_name)).join(", ")}</p></div>`;
+  }else{
+   html+='<div class="intel"><h3>✓ No obvious tone conflict detected</h3><p>The current simple inspection did not find both friendly-tone and strictly formal instructions. This is not a complete semantic contradiction analysis.</p></div>';
+  }
+  html+=`<div class="intel"><h3>${rules.length} saved guideline(s) inspected</h3><p>Inspection uses simple phrase patterns. Human reviewers should verify potential conflicts before changing approved rules.</p></div>`;
+  $("intelligenceResults").innerHTML=html;
+ }catch(e){$("intelligenceResults").innerHTML='<div class="empty">'+esc(e.message)+'</div>'}
+}
+
+loadGuidelines();
+</script>
+</body>
+</html>
