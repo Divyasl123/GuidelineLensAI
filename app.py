@@ -579,6 +579,7 @@ def stats_api():
 # START APPLICATION
 # --------------------------------------------------
 
+initialize_database()
+
 if __name__ == "__main__":
-    initialize_database()
     app.run(debug=True)
