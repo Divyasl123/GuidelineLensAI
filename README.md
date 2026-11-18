@@ -67,10 +67,4 @@ The platform also allows human reviewers to approve or reject findings and maint
 
 ## Project Status
 
-**Round 2 – Functional Prototype**
 
-The current version uses built-in rule-based checks and saved brand guidelines. It does not independently verify external factual claims or analyze images.
-
----
-
-**Developed for CodeNova India 2026**
